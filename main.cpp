@@ -1,6 +1,12 @@
 #include <iostream>
+#include "Programme.h"
+#include "AVLTree.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    AVLTree tree;
+    Programme programme;
+
+    programme.readFile(tree);
+
     return 0;
 }

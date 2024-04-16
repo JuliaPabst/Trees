@@ -8,4 +8,6 @@ add_executable(Trees main.cpp
         AVLTree.h
         AVLTreeNode.cpp
         AVLTreeNode.h
+        Programme.cpp
+        Programme.h
 )

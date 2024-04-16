@@ -67,6 +67,12 @@ build CMakeFiles/Trees.dir/AVLTreeNode.cpp.o: CXX_COMPILER__Trees_unscanned_Debu
   OBJECT_DIR = CMakeFiles/Trees.dir
   OBJECT_FILE_DIR = CMakeFiles/Trees.dir
 
+build CMakeFiles/Trees.dir/Programme.cpp.o: CXX_COMPILER__Trees_unscanned_Debug /Users/julia/Desktop/Knowledge_Centre/FH_Technikum/Semester2/Algorithemen_und_Datenstrukturen/Trees/Programme.cpp || cmake_object_order_depends_target_Trees
+  DEP_FILE = CMakeFiles/Trees.dir/Programme.cpp.o.d
+  FLAGS = -g -std=gnu++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Trees.dir
+  OBJECT_FILE_DIR = CMakeFiles/Trees.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Trees
@@ -75,7 +81,7 @@ build CMakeFiles/Trees.dir/AVLTreeNode.cpp.o: CXX_COMPILER__Trees_unscanned_Debu
 #############################################
 # Link the executable Trees
 
-build Trees: CXX_EXECUTABLE_LINKER__Trees_Debug CMakeFiles/Trees.dir/main.cpp.o CMakeFiles/Trees.dir/AVLTree.cpp.o CMakeFiles/Trees.dir/AVLTreeNode.cpp.o
+build Trees: CXX_EXECUTABLE_LINKER__Trees_Debug CMakeFiles/Trees.dir/main.cpp.o CMakeFiles/Trees.dir/AVLTree.cpp.o CMakeFiles/Trees.dir/AVLTreeNode.cpp.o CMakeFiles/Trees.dir/Programme.cpp.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk
   OBJECT_DIR = CMakeFiles/Trees.dir
   POST_BUILD = :
