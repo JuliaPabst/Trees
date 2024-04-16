@@ -16,7 +16,7 @@ private:
     int getBalanceFactor(AVLTreeNode* node);
     void updateHeight(AVLTreeNode* node);
     void printInOrder(AVLTreeNode* node);
-    void printTreeStructure(AVLTreeNode* node, int depth = 0);
+    void printTreeStructure(AVLTreeNode* node, int depth);
     void printBalanceAndHeight(AVLTreeNode* node);
 
 public:

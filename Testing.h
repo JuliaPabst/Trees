@@ -3,7 +3,7 @@
 
 
 class Testing {
-    public
+public:
 
 };
 
