@@ -16,12 +16,8 @@ private:
     AVLTreeNode* insert(AVLTreeNode* node, int key);
     AVLTreeNode* deleteNode(AVLTreeNode* node, int key);
     AVLTreeNode* search(AVLTreeNode* node, int key);
-    AVLTreeNode* rotateRight(AVLTreeNode* y);
-    AVLTreeNode* rotateLeft(AVLTreeNode* x);
-    AVLTreeNode* rebalance(AVLTreeNode* node);
     int getHeight(AVLTreeNode* node);
     int getBalanceFactor(AVLTreeNode* node);
-    void updateHeight(AVLTreeNode* node);
     void printInOrder(AVLTreeNode* node);
     void printBalanceAndHeight(AVLTreeNode* node);
     void printDecision(AVLTreeNode* node);
