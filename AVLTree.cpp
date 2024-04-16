@@ -22,13 +22,13 @@ AVLTreeNode* AVLTree::insert(AVLTreeNode* node, int key) {
 
     int balance = getBalanceFactor(node);
 
-    printBalancesAndHeights();
-
-    if (balance > 1 && node->getLeftNode() != nullptr && key < node->getLeftNode()->getKey())
+    if (balance > 1 && node->getLeftNode() != nullptr && key < node->getLeftNode()->getKey()){
         return rotateRight(node);
+    }
 
-    if (balance < -1 && node->getRightNode() != nullptr && key > node->getRightNode()->getKey())
+    if (balance < -1 && node->getRightNode() != nullptr && key > node->getRightNode()->getKey()){
         return rotateLeft(node);
+    }
 
     if (balance > 1 && node->getLeftNode() != nullptr && key > node->getLeftNode()->getKey()) {
         node->setLeftNode(rotateLeft(node->getLeftNode()));
@@ -39,8 +39,6 @@ AVLTreeNode* AVLTree::insert(AVLTreeNode* node, int key) {
         node->setRightNode(rotateRight(node->getRightNode()));
         return rotateLeft(node);
     }
-
-    printBalancesAndHeights();
 
     return node;
 }
@@ -56,8 +54,7 @@ int AVLTree::getBalanceFactor(AVLTreeNode* node) {
     if (node == nullptr) {
         return 0;
     }
-
-    return getHeight(node->getRightNode()) - getHeight(node->getLeftNode());
+    return getHeight(node->getLeftNode()) - getHeight(node->getRightNode());
 }
 
 AVLTreeNode* AVLTree::rotateRight(AVLTreeNode* y) {
@@ -110,18 +107,6 @@ void AVLTree::printInOrder(AVLTreeNode* node) {
 void AVLTree::printTree() {
     printInOrder(root);
     std::cout << std::endl;
-}
-
-void AVLTree::printTreeStructure(AVLTreeNode* node, int depth = 0) {
-    if (node != nullptr) {
-        printTreeStructure(node->getRightNode(), depth + 4);
-        std::cout << std::string(depth, ' ') << node->getKey() << std::endl;
-        printTreeStructure(node->getLeftNode(), depth + 4);
-    }
-}
-
-void AVLTree::printStructure() {
-    printTreeStructure(root);
 }
 
 void AVLTree::printBalanceAndHeight(AVLTreeNode* node) {
