@@ -5,6 +5,7 @@
 class Programme {
 public:
     int readFile(AVLTree& tree);
+    void printInformation(AVLTree& tree);
 private:
 
 };
