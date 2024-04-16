@@ -10,6 +10,13 @@ private:
 
 public:
     AVLTreeNode(int k) : key(k), height(0), left(nullptr), right(nullptr) {}
+    int getKey();
+    int getHeight();
+    AVLTreeNode* getLeftNode();
+    AVLTreeNode* getRightNode();
+    void setLeftNode(AVLTreeNode* left);
+    void setRightNode(AVLTreeNode* right);
+    void setHeight(int newHeight);
 };
 
 

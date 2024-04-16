@@ -10,4 +10,6 @@ add_executable(Trees main.cpp
         AVLTreeNode.h
         Programme.cpp
         Programme.h
+        Testing.cpp
+        Testing.h
 )
