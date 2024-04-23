@@ -291,16 +291,19 @@ bool AVLTree::isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const
 
 
 bool AVLTree::checkSubtreeStructure(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const {
-    if (!subRoot) return true;  // All nodes matched.
-    if (!mainRoot) return false;  // Main tree ended before subtree.
+    if (!subRoot) return true;
+    if (!mainRoot) return false;
 
     if (mainRoot->getKey() == subRoot->getKey()) {
-        // Continue matching next subtree node with either left or right child of current tree node.
-        return checkSubtreeStructure(mainRoot->getLeftNode(), subRoot->getLeftNode()) ||
-               checkSubtreeStructure(mainRoot->getRightNode(), subRoot->getLeftNode());
+        if (checkSubtreeStructure(mainRoot->getLeftNode(), subRoot->getLeftNode()) ||
+            checkSubtreeStructure(mainRoot->getRightNode(), subRoot->getLeftNode())) {
+            return true;
+        }
     }
+
     return false;
 }
+
 
 bool AVLTree::isSubtree(const AVLTree& subtree) const {
     if (isSubtreeHelper(rootAVL, subtree.rootAVL)) {
