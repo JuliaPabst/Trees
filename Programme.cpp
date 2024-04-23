@@ -32,8 +32,11 @@ int Programme::readFile(AVLTree& tree) {
 
 }
 void Programme::printInformation(AVLTree &tree) {
+    std::cout << "Balance factors of AVL tree: " << std::endl;
+    tree.printBalancesAndHeights(tree.getRootAVL());
+
     std::cout << "Balance factors of binary tree: " << std::endl;
-    tree.printBalancesAndHeights();
+    tree.printBalancesAndHeights(tree.getRootBinary());
 
     tree.printDecision();
 

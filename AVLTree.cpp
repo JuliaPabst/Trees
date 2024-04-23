@@ -2,10 +2,17 @@
 #include <iostream>
 
 
-AVLTree::AVLTree() : root(nullptr) {
+AVLTree::AVLTree() : rootBinary(nullptr), rootAVL(nullptr) {
     treeStats.min = 0;
     treeStats.max = 0;
     treeStats.avg = 0;
+}
+
+AVLTreeNode* AVLTree::getRootBinary(){
+    return rootBinary;
+}
+AVLTreeNode* AVLTree::getRootAVL(){
+    return rootAVL;
 }
 
 void AVLTree::insertInBinaryTree(int key) {
@@ -134,7 +141,7 @@ void AVLTree::printInOrder(AVLTreeNode* node) {
     }
 }
 
-void AVLTree::printTree() {
+void AVLTree::printTree(AVLTreeNode* root) {
     printInOrder(root);
     std::cout << std::endl;
 }
@@ -169,8 +176,8 @@ void AVLTree::printDecision(AVLTreeNode* node){
     }
 }
 
-void AVLTree::printDecision(AVLTreeNode* root) {
-    printDecision(root);
+void AVLTree::printDecision() {
+    printDecision(rootBinary);
 }
 
 

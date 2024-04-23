@@ -32,12 +32,13 @@ private:
 
 public:
     AVLTree();
-
+    AVLTreeNode* getRootBinary();
+    AVLTreeNode* getRootAVL();
     void insertInBinaryTree(int key);
     void insertInAVLTree(int key);
     AVLTreeNode* search(int key);
-    void printTree();
-    void printBalancesAndHeights();
+    void printTree(AVLTreeNode* root);
+    void printBalancesAndHeights(AVLTreeNode* root);
     void printDecision();
     void printStatistics();
     void searchPath(int key);
