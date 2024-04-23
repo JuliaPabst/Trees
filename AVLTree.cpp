@@ -260,15 +260,14 @@ void AVLTree::searchPath(int key) {
 }
 
 bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const {
-    // both nodes empty
     if (node1 == nullptr && node2 == nullptr) {
         return true;
     }
-    // one node is empty
+
     if (node1 == nullptr || node2 == nullptr) {
         return false;
     }
-    // compare current node and recursively its children
+
     return (node1->getKey() == node2->getKey() &&
             areIdentical(node1->getLeftNode(), node2->getLeftNode()) &&
             areIdentical(node1->getRightNode(), node2->getRightNode()));
@@ -276,15 +275,13 @@ bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const {
 
 
 bool AVLTree::isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const {
-    if (!subRoot) return true;  // If subRoot is exhausted, match found.
-    if (!mainRoot) return false;  // If mainRoot exhausts first, no match.
+    if (!subRoot) return true;
+    if (!mainRoot) return false;
 
-    // Start the comparison if the current nodes match.
     if (mainRoot->getKey() == subRoot->getKey() && checkSubtreeStructure(mainRoot, subRoot)) {
         return true;
     }
 
-    // Continue to search in both left and right subtrees of the current node.
     return isSubtreeHelper(mainRoot->getLeftNode(), subRoot) ||
            isSubtreeHelper(mainRoot->getRightNode(), subRoot);
 }
