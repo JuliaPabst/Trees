@@ -19,7 +19,7 @@ int Programme::readFile(AVLTree& tree) {
     std::cout << "Your tree will be created using these numbers: " << std::endl;
     while (file >> key) {
         //if (!tree.search(key)) {
-            tree.insert(key);
+            tree.insertInBinaryTree(key);
         //}
        std::cout << key << std::endl;
     }
@@ -31,17 +31,14 @@ int Programme::readFile(AVLTree& tree) {
 
 }
 void Programme::printInformation(AVLTree &tree) {
-    std::cout << "Sorted tree: ";
-    tree.printTree();
-    std::cout << "" << std::endl;
-
-    std::cout << "Balance factors of tree: " << std::endl;
+    std::cout << "Balance factors of binary tree: " << std::endl;
     tree.printBalancesAndHeights();
 
     tree.printDecision();
 
     tree.printStatistics();
 }
+
 int Programme::readSubtree(AVLTree& subtree) {
     std::cout << "Select subtree file (1 for subtree.txt, 2 for nosubtree.txt, 3 for onenode.txt): ";
     int choice;
@@ -74,7 +71,7 @@ int Programme::readSubtree(AVLTree& subtree) {
     std::cout << "Your tree will be created using these numbers: " << std::endl;
     while (file >> key) {
         //if (!tree.search(key)) {
-        subtree.insert(key);
+        subtree.insertInBinaryTree(key);
         //}
         std::cout << key << std::endl;
     }

@@ -5,7 +5,8 @@
 
 class AVLTree {
 private:
-    AVLTreeNode* root;
+    AVLTreeNode* rootBinary;
+    AVLTreeNode* rootAVL;
     struct TreeStats {
         int min;
         int max;
@@ -13,7 +14,7 @@ private:
     };
     TreeStats treeStats;
     void calculateStats();
-    AVLTreeNode* insert(AVLTreeNode* node, int key);
+    AVLTreeNode* insertInBinaryTree(AVLTreeNode* node, int key);
     AVLTreeNode* deleteNode(AVLTreeNode* node, int key);
     AVLTreeNode* search(AVLTreeNode* node, int key);
     int getHeight(AVLTreeNode* node);
@@ -30,7 +31,7 @@ private:
 public:
     AVLTree();
 
-    void insert(int key);
+    void insertInBinaryTree(int key);
     void deleteNode(int key);
     AVLTreeNode* search(int key);
     void printTree();

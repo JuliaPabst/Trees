@@ -8,19 +8,19 @@ AVLTree::AVLTree() : root(nullptr) {
     treeStats.avg = 0;
 }
 
-void AVLTree::insert(int key) {
-    root = insert(root, key);
+void AVLTree::insertInBinaryTree(int key) {
+    rootBinary = insertInBinaryTree(rootBinary, key);
 }
 
-AVLTreeNode* AVLTree::insert(AVLTreeNode* node, int key) {
+AVLTreeNode* AVLTree::insertInBinaryTree(AVLTreeNode* node, int key) {
     if (node == nullptr) {
         return new AVLTreeNode(key);
     }
 
     if (key < node->getKey()) {
-        node->setLeftNode(insert(node->getLeftNode(), key));
+        node->setLeftNode(insertInBinaryTree(node->getLeftNode(), key));
     } else if (key > node->getKey()) {
-        node->setRightNode(insert(node->getRightNode(), key));
+        node->setRightNode(insertInBinaryTree(node->getRightNode(), key));
     } else {
         return node;
     }
@@ -171,15 +171,15 @@ void AVLTree::searchPath(int key) {
 }
 
 bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const{
-    // Beide leere Knoten
+    // both nodes empty
     if (node1 == nullptr && node2 == nullptr) {
         return true;
     }
-    // Einer der Knoten ist leer
+    // one node is empty
     if (node1 == nullptr || node2 == nullptr) {
         return false;
     }
-    // Vergleiche aktuellen Knoten und rekursiv die Kinder
+    // compare current node and recursively its children
     return (node1->getKey() == node2->getKey() &&
             areIdentical(node1->getLeftNode(), node2->getLeftNode()) &&
             areIdentical(node1->getRightNode(), node2->getRightNode()));
