@@ -148,3 +148,51 @@ void AVLTree::printStatistics() {
     std::cout << "Maximum: " << treeStats.max << std::endl;
     std::cout << "Average: " << treeStats.avg << std::endl;
 };
+
+void AVLTree::searchPath(int key) {
+    AVLTreeNode* current = root;
+    std::vector<int> path;
+    while (current != nullptr) {
+        path.push_back(current->getKey());
+        if (key == current->getKey()) {
+            std::cout << key << " found ";
+            for (int k : path) {
+                std::cout << k << ", ";
+            }
+            std::cout << std::endl;
+            return;
+        } else if (key < current->getKey()) {
+            current = current->getLeftNode();
+        } else {
+            current = current->getRightNode();
+        }
+    }
+    std::cout << key << " not found!" << std::endl;
+}
+
+bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const{
+    // Beide leere Knoten
+    if (node1 == nullptr && node2 == nullptr) {
+        return true;
+    }
+    // Einer der Knoten ist leer
+    if (node1 == nullptr || node2 == nullptr) {
+        return false;
+    }
+    // Vergleiche aktuellen Knoten und rekursiv die Kinder
+    return (node1->getKey() == node2->getKey() &&
+            areIdentical(node1->getLeftNode(), node2->getLeftNode()) &&
+            areIdentical(node1->getRightNode(), node2->getRightNode()));
+}
+
+
+bool AVLTree::isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const {
+    if (!subRoot) return true;
+    if (!mainRoot) return false;
+    if (areIdentical(mainRoot, subRoot)) return true;
+    return isSubtreeHelper(mainRoot->getLeftNode(), subRoot) || isSubtreeHelper(mainRoot->getRightNode(), subRoot);
+}
+
+bool AVLTree::isSubtree(const AVLTree& subtree) const {
+    return isSubtreeHelper(root, subtree.root);
+}

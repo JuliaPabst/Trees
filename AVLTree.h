@@ -24,9 +24,12 @@ private:
     AVLTreeNode*  findMinimum(AVLTreeNode* node);
     AVLTreeNode*  findMaximum(AVLTreeNode* node);
     void sumAndCount(AVLTreeNode* node, int& sum, int& count);
+    bool areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const;
+    bool isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const;
 
 public:
     AVLTree();
+
     void insert(int key);
     void deleteNode(int key);
     AVLTreeNode* search(int key);
@@ -34,7 +37,10 @@ public:
     void printBalancesAndHeights();
     void printDecision();
     void printStatistics();
+    void searchPath(int key);
+    bool isSubtree(const AVLTree& subtree) const;  // Überladung hinzufügen
 };
+
 
 
 #endif //TREES_AVLTREE_H
