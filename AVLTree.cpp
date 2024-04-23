@@ -30,6 +30,88 @@ AVLTreeNode* AVLTree::insertInBinaryTree(AVLTreeNode* node, int key) {
     return node;
 }
 
+void AVLTree::insertInAVLTree(int key) {
+    rootAVL = insertInAVLTree(rootAVL, key);
+}
+
+AVLTreeNode* AVLTree::insertInAVLTree(AVLTreeNode* node, int key) {
+    if (node == nullptr) {
+        return new AVLTreeNode(key);
+    }
+
+    if (key < node->getKey()) {
+        node->setLeftNode(insertInAVLTree(node->getLeftNode(), key));
+    } else if (key > node->getKey()) {
+        node->setRightNode(insertInAVLTree(node->getRightNode(), key));
+    } else {
+        return node;
+    }
+
+    node->setHeight(1 + std::max(getHeight(node->getLeftNode()), getHeight(node->getRightNode())));
+
+    int balance = getBalanceFactor(node);
+
+    if (balance > 1 && node->getLeftNode() != nullptr && key < node->getLeftNode()->getKey()){
+        return rotateRight(node);
+    }
+
+    if (balance < -1 && node->getRightNode() != nullptr && key > node->getRightNode()->getKey()){
+        return rotateLeft(node);
+    }
+
+    if (balance > 1 && node->getLeftNode() != nullptr && key > node->getLeftNode()->getKey()) {
+        node->setLeftNode(rotateLeft(node->getLeftNode()));
+        return rotateRight(node);
+    }
+
+    if (balance < -1 && node->getRightNode() != nullptr && key < node->getRightNode()->getKey()) {
+        node->setRightNode(rotateRight(node->getRightNode()));
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+
+AVLTreeNode* AVLTree::rotateRight(AVLTreeNode* y) {
+    if (y == nullptr || y->getLeftNode() == nullptr){
+        return y;  // Check added to prevent dereferencing null
+    }
+
+    AVLTreeNode* x = y->getLeftNode();
+    AVLTreeNode* T2 = x->getRightNode();
+
+    // Perform rotation
+    x->setRightNode(y);
+    y->setLeftNode(T2);
+
+    // Update heights
+    y->setHeight(std::max(getHeight(y->getLeftNode()), getHeight(y->getRightNode())) + 1);
+    x->setHeight( std::max(getHeight(x->getLeftNode()), getHeight(x->getRightNode())) + 1);
+
+    return x;
+}
+
+AVLTreeNode* AVLTree::rotateLeft(AVLTreeNode* x) {
+    if (x == nullptr || x->getRightNode() == nullptr){
+        return x;
+    }
+
+    AVLTreeNode* y = x->getRightNode();
+    AVLTreeNode* T2 = y->getLeftNode();
+
+    // Perform rotation
+    y->setLeftNode(x);
+    x->setRightNode(T2);
+
+
+    // Update heights
+    x->setHeight( std::max(getHeight(x->getLeftNode()), getHeight(x->getRightNode())) + 1);
+    y->setHeight(std::max(getHeight(y->getLeftNode()), getHeight(y->getRightNode())) + 1);
+
+    return y;
+}
+
+
 int AVLTree::getHeight(AVLTreeNode* node) {
     if (node == nullptr) {
         return -1;
@@ -71,7 +153,7 @@ void AVLTree::printBalanceAndHeight(AVLTreeNode* node) {
     }
 }
 
-void AVLTree::printBalancesAndHeights() {
+void AVLTree::printBalancesAndHeights(AVLTreeNode* root) {
     printBalanceAndHeight(root);
     std::cout << " " << std::endl;
 }
@@ -87,7 +169,7 @@ void AVLTree::printDecision(AVLTreeNode* node){
     }
 }
 
-void AVLTree::printDecision() {
+void AVLTree::printDecision(AVLTreeNode* root) {
     printDecision(root);
 }
 
@@ -129,10 +211,10 @@ void AVLTree::calculateStats() {
     int sum = 0;
     int count = 0;
 
-    if (root != nullptr) {
-        treeStats.min = findMinimum(root)->getKey();
-        treeStats.max = findMaximum(root)->getKey();
-        sumAndCount(root, sum, count);
+    if (rootBinary != nullptr) {
+        treeStats.min = findMinimum(rootBinary)->getKey();
+        treeStats.max = findMaximum(rootBinary)->getKey();
+        sumAndCount(rootBinary, sum, count);
         treeStats.avg = count > 0 ? (double)sum / count : 0;
     } else {
         treeStats.min = treeStats.max = 0;
@@ -150,7 +232,7 @@ void AVLTree::printStatistics() {
 };
 
 void AVLTree::searchPath(int key) {
-    AVLTreeNode* current = root;
+    AVLTreeNode* current = rootAVL;
     std::vector<int> path;
     while (current != nullptr) {
         path.push_back(current->getKey());
@@ -194,5 +276,5 @@ bool AVLTree::isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const
 }
 
 bool AVLTree::isSubtree(const AVLTree& subtree) const {
-    return isSubtreeHelper(root, subtree.root);
+    return isSubtreeHelper(rootAVL, subtree.rootAVL);
 }

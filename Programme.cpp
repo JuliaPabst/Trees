@@ -20,6 +20,7 @@ int Programme::readFile(AVLTree& tree) {
     while (file >> key) {
         //if (!tree.search(key)) {
             tree.insertInBinaryTree(key);
+            tree.insertInAVLTree(key);
         //}
        std::cout << key << std::endl;
     }

@@ -15,7 +15,9 @@ private:
     TreeStats treeStats;
     void calculateStats();
     AVLTreeNode* insertInBinaryTree(AVLTreeNode* node, int key);
-    AVLTreeNode* deleteNode(AVLTreeNode* node, int key);
+    AVLTreeNode* insertInAVLTree(AVLTreeNode* node, int key);
+    AVLTreeNode* rotateRight(AVLTreeNode* y);
+    AVLTreeNode* rotateLeft(AVLTreeNode* x);
     AVLTreeNode* search(AVLTreeNode* node, int key);
     int getHeight(AVLTreeNode* node);
     int getBalanceFactor(AVLTreeNode* node);
@@ -32,7 +34,7 @@ public:
     AVLTree();
 
     void insertInBinaryTree(int key);
-    void deleteNode(int key);
+    void insertInAVLTree(int key);
     AVLTreeNode* search(int key);
     void printTree();
     void printBalancesAndHeights();
