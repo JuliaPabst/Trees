@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-
+// JULES
 int Programme::readFile(AVLTree& tree) {
     std::string filename =  "numbers.txt";
     std::cout << "treecheck ";
@@ -17,20 +17,20 @@ int Programme::readFile(AVLTree& tree) {
 
     int key;
     std::cout << "Your tree will be created using these numbers: " << std::endl;
+    // read all numbers from the file and safe it as key
     while (file >> key) {
-        //if (!tree.search(key)) {
-            tree.insertInBinaryTree(key);
-            tree.insertInAVLTree(key);
-        //}
-       std::cout << key << std::endl;
+        tree.insertInBinaryTree(key);
+        tree.insertInAVLTree(key);
+        std::cout << key << std::endl;
     }
 
     std::cout << "" << std::endl;
     file.close();
 
     return 0;
-
 }
+
+// JULES
 void Programme::printInformation(AVLTree &tree) {
     std::cout << "Balance factors of AVL tree: " << std::endl;
     tree.printBalancesAndHeights(tree.getRootAVL());
@@ -43,6 +43,7 @@ void Programme::printInformation(AVLTree &tree) {
     tree.printStatistics();
 }
 
+// PETRA
 int Programme::readSubtree(AVLTree& subtree) {
     std::cout << "Select subtree file (1 for subtree.txt, 2 for nosubtree.txt, 3 for onenode.txt): ";
     int choice;
@@ -85,6 +86,7 @@ int Programme::readSubtree(AVLTree& subtree) {
 
 }
 
+// PETRA
 void Programme::checkIfSubtree(AVLTree &tree) {
     int searchType = 0;
 
@@ -111,6 +113,4 @@ void Programme::checkIfSubtree(AVLTree &tree) {
             std::cout << "Invalid search type selected." << std::endl;
         }
     }
-
-
 }
