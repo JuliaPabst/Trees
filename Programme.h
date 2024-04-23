@@ -6,8 +6,10 @@
 class Programme {
 public:
     int readFile(AVLTree& tree);
-    int readSubtree(AVLTree& subtree);  //  Methode für Subtrees
+    int readSubtree(AVLTree& subtree);
+    void checkIfSubtree(AVLTree& tree);
     void printInformation(AVLTree& tree);
+
 
 private:
 
