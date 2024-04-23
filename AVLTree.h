@@ -29,6 +29,7 @@ private:
     void sumAndCount(AVLTreeNode* node, int& sum, int& count);
     bool areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const;
     bool isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const;
+    bool checkSubtreeStructure(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const;
 
 public:
     AVLTree();

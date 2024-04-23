@@ -86,11 +86,11 @@ int Programme::readSubtree(AVLTree& subtree) {
 }
 
 void Programme::checkIfSubtree(AVLTree &tree) {
-    std::cout << "Select search type (1 for single key, 2 for subtree): ";
-    int searchType;
-    std::cin >> searchType;
+    int searchType = 0;
 
     while(searchType != 1 && searchType != 2){
+        std::cout << "Select search type (1 for single key, 2 for subtree): ";
+        std::cin >> searchType;
         if (searchType == 1) {
             std::cout << "Enter an integer key to search in the tree: ";
             int key;
@@ -100,11 +100,13 @@ void Programme::checkIfSubtree(AVLTree &tree) {
             AVLTree subtree;
             readSubtree(subtree);
 
-            if (tree.isSubtree(subtree)) {
-                std::cout << "Subtree found!" << std::endl;
-            } else {
-                std::cout << "Subtree not found!" << std::endl;
-            }
+            std::cout << "Subtree: " << std::endl;
+            subtree.printTree(subtree.getRootAVL());
+            std::cout << "Maintree: " << std::endl;
+            tree.printTree(tree.getRootAVL());
+
+            bool found = tree.isSubtree(subtree);
+
         } else {
             std::cout << "Invalid search type selected." << std::endl;
         }

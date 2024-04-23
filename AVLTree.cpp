@@ -259,7 +259,7 @@ void AVLTree::searchPath(int key) {
     std::cout << key << " not found!" << std::endl;
 }
 
-bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const{
+bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const {
     // both nodes empty
     if (node1 == nullptr && node2 == nullptr) {
         return true;
@@ -276,12 +276,39 @@ bool AVLTree::areIdentical(AVLTreeNode* node1, AVLTreeNode* node2) const{
 
 
 bool AVLTree::isSubtreeHelper(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const {
-    if (!subRoot) return true;
-    if (!mainRoot) return false;
-    if (areIdentical(mainRoot, subRoot)) return true;
-    return isSubtreeHelper(mainRoot->getLeftNode(), subRoot) || isSubtreeHelper(mainRoot->getRightNode(), subRoot);
+    if (!subRoot) return true;  // If subRoot is exhausted, match found.
+    if (!mainRoot) return false;  // If mainRoot exhausts first, no match.
+
+    // Start the comparison if the current nodes match.
+    if (mainRoot->getKey() == subRoot->getKey() && checkSubtreeStructure(mainRoot, subRoot)) {
+        return true;
+    }
+
+    // Continue to search in both left and right subtrees of the current node.
+    return isSubtreeHelper(mainRoot->getLeftNode(), subRoot) ||
+           isSubtreeHelper(mainRoot->getRightNode(), subRoot);
+}
+
+
+bool AVLTree::checkSubtreeStructure(AVLTreeNode* mainRoot, AVLTreeNode* subRoot) const {
+    if (!subRoot) return true;  // All nodes matched.
+    if (!mainRoot) return false;  // Main tree ended before subtree.
+
+    if (mainRoot->getKey() == subRoot->getKey()) {
+        // Continue matching next subtree node with either left or right child of current tree node.
+        return checkSubtreeStructure(mainRoot->getLeftNode(), subRoot->getLeftNode()) ||
+               checkSubtreeStructure(mainRoot->getRightNode(), subRoot->getLeftNode());
+    }
+    return false;
 }
 
 bool AVLTree::isSubtree(const AVLTree& subtree) const {
-    return isSubtreeHelper(rootAVL, subtree.rootAVL);
+    if (isSubtreeHelper(rootAVL, subtree.rootAVL)) {
+        std::cout << "Subtree found" << std::endl;
+        return true;
+    } else {
+        std::cout << "Subtree not found!" << std::endl;
+        return false;
+    }
 }
+
