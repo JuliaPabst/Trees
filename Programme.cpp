@@ -74,9 +74,7 @@ int Programme::readSubtree(AVLTree& subtree) {
     int key;
     std::cout << "Your tree will be created using these numbers: " << std::endl;
     while (file >> key) {
-        //if (!tree.search(key)) {
-        subtree.insertInBinaryTree(key);
-        //}
+        subtree.insertInAVLTree(key);
         std::cout << key << std::endl;
     }
 
